@@ -443,8 +443,8 @@ img {
   display: block;
 }
 
-.hero__line--mark {
-  width: fit-content;
+.hero__mark {
+  display: inline-block;
   margin: 6px 0;
   padding: 2px 12px 4px;
   background: var(--yellow);
@@ -474,52 +474,59 @@ img {
   padding: 24px 36px 40px 0;
 }
 
-/* The one moving object on the page. */
+/* Portrait: the photo card, three colour cards behind it and two badges.
+   Every piece floats on its own rhythm. The resting offset lives in
+   `translate` / `rotate`, the motion in `transform`, so they never fight. */
 .portrait {
   position: relative;
   width: min(100%, 380px);
-  animation: float 6s ease-in-out infinite;
 }
 
-@keyframes float {
-  0%,
-  100% {
-    transform: translateY(0) rotate(-1deg);
-  }
-  50% {
-    transform: translateY(-14px) rotate(1deg);
-  }
+.portrait__layer,
+.portrait__frame {
+  border: var(--border);
+  border-radius: 28px;
+  animation: drift 7s ease-in-out infinite;
+  transition: translate 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .portrait {
-    animation: none;
-  }
-
-  html {
-    scroll-behavior: auto;
-  }
-
-  .btn,
-  .nav__link {
-    transition: none;
-  }
+.portrait__layer {
+  position: absolute;
+  inset: 0;
 }
+
+.portrait__layer--1 { translate: 12px 12px; animation-duration: 6.2s; animation-delay: -1.3s; }
+.portrait__layer--2 { translate: 24px 24px; animation-duration: 7.4s; animation-delay: -3.1s; }
+.portrait__layer--3 { translate: 36px 36px; animation-duration: 8.6s; animation-delay: -5.2s; }
+
+/* hovering the photo fans the cards out */
+.portrait:hover .portrait__layer--1 { translate: 16px 16px; }
+.portrait:hover .portrait__layer--2 { translate: 32px 32px; }
+.portrait:hover .portrait__layer--3 { translate: 48px 48px; }
+.portrait:hover .portrait__frame { translate: -4px -4px; }
 
 .portrait__frame {
   position: relative;
   aspect-ratio: 1 / 1.05;
   background: var(--pink);
-  border: var(--border);
-  border-radius: 28px;
-  /* multi-layered shadow: each colour layer has its own ink outline */
-  box-shadow:
-    12px 12px 0 0 var(--yellow),
-    12px 12px 0 3px var(--line),
-    24px 24px 0 0 var(--purple),
-    24px 24px 0 3px var(--line),
-    36px 36px 0 0 var(--green),
-    36px 36px 0 3px var(--line);
+  animation-name: drift-main;
+  animation-duration: 6s;
+}
+
+@keyframes drift-main {
+  0%, 100% { transform: translateY(0) rotate(-0.8deg); }
+  50% { transform: translateY(-12px) rotate(0.8deg); }
+}
+
+@keyframes drift {
+  0%, 100% { transform: translate(0, 0) rotate(-0.6deg); }
+  33% { transform: translate(3px, -9px) rotate(0.9deg); }
+  66% { transform: translate(-3px, -4px) rotate(-0.2deg); }
+}
+
+@keyframes bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-9px); }
 }
 
 .portrait__frame img {
@@ -529,7 +536,6 @@ img {
   width: 96%;
   max-width: none;
   transform: translateX(-50%);
-  /* the head pokes out of the frame; the bottom follows the rounded corners */
   border-radius: 0 0 24px 24px;
 }
 
@@ -544,18 +550,27 @@ img {
   font-size: 0.8rem;
   font-weight: 700;
   white-space: nowrap;
+  animation: bob 5s ease-in-out infinite;
+  transition: rotate 0.2s ease, scale 0.2s ease;
 }
 
 .portrait__badge--top {
   top: 7%;
   right: -34px;
-  transform: rotate(5deg);
+  rotate: 5deg;
+  animation-delay: -2s;
 }
 
 .portrait__badge--bottom {
   left: -36px;
   bottom: 10%;
-  transform: rotate(-5deg);
+  rotate: -5deg;
+  animation-duration: 6.5s;
+}
+
+.portrait__badge:hover {
+  rotate: 0deg;
+  scale: 1.08;
 }
 
 @media (max-width: 900px) {
@@ -579,6 +594,10 @@ img {
   .portrait__badge--bottom {
     left: -14px;
   }
+
+  .portrait__layer--1 { translate: 9px 9px; }
+  .portrait__layer--2 { translate: 18px 18px; }
+  .portrait__layer--3 { translate: 27px 27px; }
 }
 
 /* ---------- sections ---------- */
@@ -1096,4 +1115,227 @@ img {
   flex-wrap: wrap;
   justify-content: space-between;
   gap: 8px;
+}
+
+/* ==========================================================================
+   Interaction layer: hover, press and focus feedback for clickable things.
+   ========================================================================== */
+
+.btn svg,
+.link-card svg {
+  transition: transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.btn:hover svg {
+  transform: translateY(3px);
+}
+
+.link-card:hover svg {
+  transform: translate(4px, -4px) scale(1.2);
+}
+
+.link-card:active {
+  transform: translate(6px, 6px);
+  box-shadow: 0 0 0 var(--line);
+}
+
+/* logo: the mark tips over */
+.nav__logo-mark {
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s ease;
+}
+
+.nav__logo:hover .nav__logo-mark {
+  transform: rotate(-10deg) scale(1.08);
+  box-shadow: 5px 5px 0 var(--line);
+}
+
+/* nav links lift, then press in */
+.nav__link {
+  transition: transform 0.12s ease, box-shadow 0.12s ease, background-color 0.12s ease;
+}
+
+.nav__link:hover {
+  transform: translate(-1px, -2px);
+  box-shadow: 3px 4px 0 var(--line);
+}
+
+.nav__link:active,
+.nav__link--cta:active {
+  transform: translate(3px, 3px);
+  box-shadow: 0 0 0 var(--line);
+}
+
+.nav__tool {
+  transition: transform 0.12s ease, box-shadow 0.12s ease, background-color 0.12s ease;
+}
+
+.nav__tool:hover {
+  transform: translate(-1px, -2px);
+  box-shadow: 3px 4px 0 var(--line);
+}
+
+.nav__tool:active {
+  transform: translate(2px, 2px);
+  box-shadow: 0 0 0 var(--line);
+}
+
+.nav__tool svg {
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.nav__tool:hover svg {
+  transform: rotate(45deg) scale(1.15);
+}
+
+/* headline highlight straightens up */
+.hero__mark {
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s ease;
+}
+
+.hero__mark:hover {
+  transform: rotate(1.5deg) scale(1.03);
+  box-shadow: 7px 7px 0 var(--line);
+}
+
+/* CV cards */
+.job__toggle:hover {
+  background: color-mix(in srgb, var(--yellow) 16%, transparent);
+}
+
+.job:hover .job__card {
+  transform: translate(-2px, -2px);
+  box-shadow: var(--shadow);
+}
+
+.job:has(.job__toggle:active) .job__card {
+  transform: translate(3px, 3px);
+  box-shadow: 1px 1px 0 var(--line);
+}
+
+.job__icon {
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.job__toggle:hover .job__icon {
+  transform: translate(-1px, -1px) rotate(90deg);
+}
+
+.job__dot {
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.job:hover .job__dot,
+.job.is-open .job__dot {
+  transform: scale(1.35);
+}
+
+.job__details:not([hidden]) {
+  animation: reveal 0.25s ease-out;
+}
+
+@keyframes reveal {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* cards, chips and tags */
+.card,
+.post-card {
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.card:hover,
+.post-card:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: 9px 9px 0 var(--line);
+}
+
+.card--form:hover {
+  transform: none;
+  box-shadow: var(--shadow);
+}
+
+.chip,
+.tag {
+  transition: transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.15s ease;
+}
+
+.chip:hover {
+  background: var(--yellow);
+  color: var(--on-color);
+  transform: translateY(-3px) rotate(-3deg);
+}
+
+.chip:nth-child(even):hover {
+  background: var(--pink);
+  transform: translateY(-3px) rotate(3deg);
+}
+
+.tagbtn {
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+
+.tagbtn:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: var(--shadow-sm);
+}
+
+.tagbtn:active {
+  transform: translate(2px, 2px);
+  box-shadow: 0 0 0 var(--line);
+}
+
+/* form fields step forward when focused */
+.field input,
+.field textarea {
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+
+.field input:hover,
+.field textarea:hover {
+  box-shadow: 3px 3px 0 var(--line);
+}
+
+.field input:focus-visible,
+.field textarea:focus-visible {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 var(--purple);
+}
+
+.back {
+  transition: transform 0.15s ease;
+}
+
+.back:hover {
+  transform: translateX(-5px);
+}
+
+.post-card__title a,
+.prose a {
+  transition: background-color 0.12s ease;
+}
+
+.prose a:hover {
+  background: var(--yellow);
+  color: var(--on-color);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
 }

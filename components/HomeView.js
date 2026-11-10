@@ -46,11 +46,23 @@ export default function HomeView({ lang = 'en' }) {
             <div className="hero__text">
               <p className="kicker">{t.hero.hello}</p>
               <h1 className="hero__title">
-                {t.hero.title.map((line, i) => (
-                  <span key={line} className={i === 1 ? 'hero__line hero__line--mark' : 'hero__line'}>
-                    {line}
-                  </span>
-                ))}
+                {t.hero.title.map((line) => {
+                  const mark = t.hero.titleMark;
+                  const at = mark ? line.indexOf(mark) : -1;
+                  return (
+                    <span key={line} className="hero__line">
+                      {at < 0 ? (
+                        line
+                      ) : (
+                        <>
+                          {line.slice(0, at)}
+                          <span className="hero__mark">{mark}</span>
+                          {line.slice(at + mark.length)}
+                        </>
+                      )}
+                    </span>
+                  );
+                })}
               </h1>
               <p className="hero__intro">{t.hero.intro}</p>
               <div className="hero__actions">
@@ -61,13 +73,17 @@ export default function HomeView({ lang = 'en' }) {
 
             <div className="hero__visual">
               <div className="portrait">
+                {/* three cards behind the photo; each one floats on its own */}
+                <span className="portrait__layer portrait__layer--3 bg-green" aria-hidden="true" />
+                <span className="portrait__layer portrait__layer--2 bg-purple" aria-hidden="true" />
+                <span className="portrait__layer portrait__layer--1 bg-yellow" aria-hidden="true" />
                 <span className="portrait__badge portrait__badge--top bg-green">{t.hero.badgeRole}</span>
                 <div className="portrait__frame">
                   <img
                     src={withBase('/images/bence.webp')}
                     alt={t.hero.photoAlt}
                     width="900"
-                    height="1015"
+                    height="1126"
                   />
                 </div>
                 <span className="portrait__badge portrait__badge--bottom bg-yellow">{t.hero.badgeSince}</span>

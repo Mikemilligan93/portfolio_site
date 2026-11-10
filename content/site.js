@@ -1,0 +1,383 @@
+// All texts and CV data of the one-pager live in this file.
+// Every user-facing string has an English (en) and a Hungarian (hu) version.
+
+export const site = {
+  name: 'Bence Tóth',
+  nameLocal: { en: 'Bence Tóth', hu: 'Tóth Bence' },
+  // TODO: replace with the address you want to publish.
+  email: 'your.email@example.com',
+  linkedin: 'https://www.linkedin.com/in/tothbenceistvan',
+  linkedinLabel: 'in/tothbenceistvan',
+  github: 'https://github.com/Mikemilligan93',
+  githubLabel: 'Mikemilligan93',
+  location: { en: 'Budapest, Hungary', hu: 'Budapest' },
+};
+
+export const locales = ['en', 'hu'];
+
+export const ui = {
+  en: {
+    metaTitle: 'Bence Tóth – Business Analyst & Tech Writer',
+    metaDescription:
+      'Senior Business Analyst and tech writer with project management experience. CV, contact and blog.',
+    nav: { about: 'About', cv: 'CV', blog: 'Blog', contact: 'Contact me' },
+    themeToLight: 'Switch to light mode',
+    themeToDark: 'Switch to dark mode',
+    langSwitch: 'Magyar',
+    langSwitchShort: 'HU',
+    menu: 'Menu',
+    skip: 'Skip to content',
+    hero: {
+      hello: "Hi, I'm Bence.",
+      title: ['I turn business', 'needs into', 'buildable specs.'],
+      intro:
+        "I'm a Senior Business Analyst and tech writer at Mito in Budapest. I sit between clients and development teams: I find out what the business really needs, and write it down so that designers, developers and testers can build it. I have also run projects end to end, so I know what happens after the handover.",
+      ctaCv: 'See my CV',
+      ctaContact: 'Contact me',
+      badgeRole: 'Senior BA @ Mito',
+      badgeSince: 'In the field since 2017',
+      photoAlt: 'Bence Tóth holding a microphone',
+    },
+    cv: {
+      kicker: 'Where I have been',
+      title: 'CV',
+      lead: 'The short version is below. Open any role to see what I actually did there.',
+      download: 'Download CV (PDF)',
+      expand: 'Show details',
+      collapse: 'Hide details',
+      present: 'Present',
+      experience: 'Experience',
+      education: 'Education',
+      skills: 'Skills & tools',
+    },
+    contact: {
+      kicker: "Let's talk",
+      title: 'Contact me',
+      lead: 'Have a project that needs untangling, or just want to say hi? Pick a channel or write me here.',
+      name: 'Your name',
+      email: 'Your e-mail',
+      message: 'Message',
+      send: 'Send message',
+      sending: 'Sending…',
+      sent: 'Thanks! Your message is on its way.',
+      error: 'Something went wrong. Please try again or use one of the links.',
+      mailNote: 'Your e-mail app will open with the message filled in.',
+    },
+    blog: {
+      title: 'Blog',
+      lead: 'Notes on requirements, documentation and delivery.',
+      all: 'All',
+      read: 'Read post',
+      back: 'Back to all posts',
+      empty: 'No posts with this tag yet.',
+      englishOnly: '',
+    },
+    footer: 'Built with Next.js and Markdown.',
+  },
+  hu: {
+    metaTitle: 'Tóth Bence – üzleti elemző és tech writer',
+    metaDescription:
+      'Senior üzleti elemző és tech writer projektmenedzsment-tapasztalattal. Önéletrajz, elérhetőség és blog.',
+    nav: { about: 'Rólam', cv: 'Önéletrajz', blog: 'Blog', contact: 'Írj nekem' },
+    themeToLight: 'Váltás világos módra',
+    themeToDark: 'Váltás sötét módra',
+    langSwitch: 'English',
+    langSwitchShort: 'EN',
+    menu: 'Menü',
+    skip: 'Ugrás a tartalomra',
+    hero: {
+      hello: 'Szia, Bence vagyok.',
+      title: ['Üzleti igényből', 'megépíthető', 'specifikáció.'],
+      intro:
+        'Senior üzleti elemző és tech writer vagyok a Mitónál, Budapesten. Az ügyfelek és a fejlesztőcsapatok között dolgozom: kiderítem, mire van valójában szüksége az üzletnek, és úgy írom le, hogy a designerek, a fejlesztők és a tesztelők meg tudják építeni. Projekteket is vittem végig az elejétől a végéig, így tudom, mi történik az átadás után.',
+      ctaCv: 'Önéletrajzom',
+      ctaContact: 'Írj nekem',
+      badgeRole: 'Senior BA @ Mito',
+      badgeSince: '2017 óta a szakmában',
+      photoAlt: 'Tóth Bence mikrofonnal a kezében',
+    },
+    cv: {
+      kicker: 'Eddigi utam',
+      title: 'Önéletrajz',
+      lead: 'Lent a rövid változat látható. Nyiss le egy pozíciót, ha kíváncsi vagy, mit csináltam ott.',
+      download: 'Önéletrajz letöltése (PDF)',
+      expand: 'Részletek megjelenítése',
+      collapse: 'Részletek elrejtése',
+      present: 'jelenleg',
+      experience: 'Szakmai tapasztalat',
+      education: 'Tanulmányok',
+      skills: 'Készségek és eszközök',
+    },
+    contact: {
+      kicker: 'Beszéljünk',
+      title: 'Írj nekem',
+      lead: 'Van egy projekted, amit ki kellene bogozni, vagy csak köszönnél? Válassz csatornát, vagy írj itt.',
+      name: 'Neved',
+      email: 'E-mail-címed',
+      message: 'Üzenet',
+      send: 'Üzenet küldése',
+      sending: 'Küldés…',
+      sent: 'Köszönöm! Az üzeneted úton van.',
+      error: 'Valami hiba történt. Próbáld újra, vagy használd valamelyik linket.',
+      mailNote: 'Megnyílik a levelezőprogramod az előre kitöltött üzenettel.',
+    },
+    blog: {
+      title: 'Blog',
+      lead: 'Jegyzetek követelményekről, dokumentációról és szállításról.',
+      all: 'Összes',
+      read: 'Elolvasom',
+      back: 'Vissza a bejegyzésekhez',
+      empty: 'Ehhez a címkéhez még nincs bejegyzés.',
+      englishOnly: 'A blog angol nyelvű.',
+    },
+    footer: 'Next.js-szel és Markdownnal készült.',
+  },
+};
+
+// color: one of yellow | pink | green | purple | blue | orange (see globals.css)
+export const jobs = [
+  {
+    id: 'mito-senior',
+    company: 'Mito Group',
+    color: 'yellow',
+    role: { en: 'Senior IT Business Analyst', hu: 'Senior IT üzleti elemző' },
+    start: { en: 'Oct 2025', hu: '2025. okt.' },
+    end: null,
+    location: { en: 'Budapest · Hybrid', hu: 'Budapest · Hibrid' },
+    bullets: {
+      en: [
+        'Leading business analysis and functional specification work on client projects',
+      ],
+      hu: [
+        'Üzleti elemzési és funkcionális specifikációs munka vezetése ügyfélprojekteken',
+      ],
+    },
+    skills: ['Business Analysis', 'Technical Writing'],
+  },
+  {
+    id: 'mito-ba',
+    company: 'Mito Group',
+    color: 'yellow',
+    role: { en: 'IT Business Analyst', hu: 'IT üzleti elemző' },
+    start: { en: 'May 2023', hu: '2023. máj.' },
+    end: { en: 'Oct 2025', hu: '2025. okt.' },
+    location: { en: 'Budapest', hu: 'Budapest' },
+    bullets: {
+      en: [
+        'Bridging the gap between business needs and tech solutions',
+        'Facilitating communication between business stakeholders and technical teams (frontend, backend, QA) to keep everyone aligned on project goals',
+        'Creating consistent and detailed technical documentation',
+        "Analysing the client's business needs",
+        'Collaborating closely with UX/UI design teams on user-friendly solutions that meet both technical and design standards',
+        'Improving workshop techniques and information channels',
+      ],
+      hu: [
+        'Híd az üzleti igények és a technológiai megoldások között',
+        'Az üzleti szereplők és a technikai csapatok (frontend, backend, QA) közötti kommunikáció támogatása, hogy mindenki ugyanazokat a projektcélokat lássa',
+        'Egységes és részletes technikai dokumentáció készítése',
+        'Az ügyfél üzleti igényeinek elemzése',
+        'Szoros együttműködés a UX/UI csapatokkal olyan felhasználóbarát megoldásokon, amelyek technikai és designszempontból is megállják a helyüket',
+        'A workshoptechnikák és az információs csatornák fejlesztése',
+      ],
+    },
+    skills: ['Business Analysis', 'Technical Writing'],
+  },
+  {
+    id: 'it4all',
+    company: 'it4all Hungary',
+    color: 'pink',
+    role: { en: 'IT Business Analyst', hu: 'IT üzleti elemző' },
+    start: { en: 'Jun 2021', hu: '2021. jún.' },
+    end: { en: 'May 2023', hu: '2023. máj.' },
+    location: { en: 'Budapest', hu: 'Budapest' },
+    bullets: {
+      en: [
+        'Gathering business requirements from clients; managing and prioritising the product backlog (Azure DevOps)',
+        'End-to-end project management, from the business proposal to the end of the support period',
+        'Coordinating a team of developers',
+        'Writing technical, process and user documentation',
+        'Creating BPMN and UML diagrams (Visio, Lucidchart)',
+        'Designing lo-fi wireframes and UI (Figma)',
+      ],
+      hu: [
+        'Üzleti követelmények felmérése az ügyfeleknél; a product backlog kezelése és priorizálása (Azure DevOps)',
+        'Teljes körű projektmenedzsment az üzleti ajánlattól a support időszak végéig',
+        'Fejlesztőcsapat koordinálása',
+        'Technikai, folyamat- és felhasználói dokumentáció írása',
+        'BPMN- és UML-diagramok készítése (Visio, Lucidchart)',
+        'Lo-fi drótvázak és UI tervezése (Figma)',
+      ],
+    },
+    skills: ['Project Management', 'Business Analysis', 'Azure DevOps', 'Figma'],
+  },
+  {
+    id: 'citi',
+    company: 'Citi',
+    color: 'blue',
+    role: {
+      en: 'Financial Reporting Officer – Liquidity',
+      hu: 'Pénzügyi riporting munkatárs – likviditás',
+    },
+    start: { en: 'Oct 2020', hu: '2020. okt.' },
+    end: { en: 'Jun 2021', hu: '2021. jún.' },
+    location: { en: 'Budapest', hu: 'Budapest' },
+    bullets: {
+      en: [
+        'CRD IV daily liquidity reporting for the largest entity, Citibank Europe plc',
+        'Taking part in an RPA project: process mapping and UAT testing (Knime)',
+        'Process simplification through automation (mainly in Excel)',
+      ],
+      hu: [
+        'CRD IV szerinti napi likviditási riporting a legnagyobb entitás, a Citibank Europe plc számára',
+        'Részvétel RPA-projektben: folyamatfelmérés és UAT tesztelés (Knime)',
+        'Folyamatok egyszerűsítése automatizálással (főként Excelben)',
+      ],
+    },
+    skills: ['Financial Reporting', 'Process Simplification'],
+  },
+  {
+    id: 'diageo-ba',
+    company: 'Diageo',
+    color: 'green',
+    role: {
+      en: 'Business Analyst – Data & Analytics',
+      hu: 'Üzleti elemző – Data & Analytics',
+    },
+    start: { en: 'Sep 2019', hu: '2019. szept.' },
+    end: { en: 'Oct 2020', hu: '2020. okt.' },
+    location: { en: 'Budapest', hu: 'Budapest' },
+    bullets: {
+      en: [
+        'Providing regular and ad-hoc reports for the Source-to-Pay (STP) team',
+        'Supporting the data warehouse developers in BI projects (Power BI)',
+        'Designing solutions for incoming reporting demands',
+        'Process simplification (UiPath)',
+      ],
+      hu: [
+        'Rendszeres és eseti riportok készítése a Source-to-Pay (STP) csapatnak',
+        'Az adattárház-fejlesztők támogatása BI-projektekben (Power BI)',
+        'Megoldások tervezése a beérkező riportigényekre',
+        'Folyamatok egyszerűsítése (UiPath)',
+      ],
+    },
+    skills: ['Business Intelligence', 'Power BI', 'Excel'],
+  },
+  {
+    id: 'diageo-lg',
+    company: 'Diageo',
+    color: 'green',
+    role: {
+      en: 'Business Analyst – L&G Tool Development (part-time internal project)',
+      hu: 'Üzleti elemző – L&G eszközfejlesztés (részmunkaidős belső projekt)',
+    },
+    start: { en: 'Jan 2020', hu: '2020. jan.' },
+    end: { en: 'Apr 2020', hu: '2020. ápr.' },
+    location: { en: 'Budapest', hu: 'Budapest' },
+    bullets: {
+      en: [
+        'Business analyst on the development of a new facility management tool',
+        'Process mapping and redesign; writing user stories and maintaining the product backlog',
+        'Gathering business requirements from internal stakeholders',
+        'Coordinating daily stand-ups with the developer team',
+        'Facilitating user training',
+      ],
+      hu: [
+        'Üzleti elemző egy új hitelkeret-kezelő (facility management) eszköz fejlesztésében',
+        'Folyamatfelmérés és -újratervezés; user storyk írása és a product backlog karbantartása',
+        'Üzleti követelmények felmérése a belső érintetteknél',
+        'A fejlesztőcsapat napi standupjainak koordinálása',
+        'Felhasználói oktatások tartása',
+      ],
+    },
+    skills: ['Project Management', 'Business Analysis'],
+  },
+  {
+    id: 'diageo-bank',
+    company: 'Diageo',
+    color: 'green',
+    role: { en: 'Bank Operations Analyst', hu: 'Banki műveleti elemző' },
+    start: { en: 'Apr 2018', hu: '2018. ápr.' },
+    end: { en: 'Sep 2019', hu: '2019. szept.' },
+    location: { en: 'Budapest', hu: 'Budapest' },
+    bullets: {
+      en: [
+        "Managing Diageo's external facilities (guarantees, letters of credit) at partner banks",
+        'Owning yearly audit projects (yearly review of external facilities, bank account completeness)',
+        'Taking part in Lean Six Sigma projects',
+        'Preparing the weekly cash flow forecasts',
+        'Admin of the Loans & Guarantees tool: uploading and editing facilities, maintaining and cleansing the database',
+        'Supporting the team in various cash projects',
+      ],
+      hu: [
+        'A Diageo külső hitelkereteinek (garanciák, akkreditívek) kezelése a partnerbankoknál',
+        'Éves auditprojektek felelőse (külső hitelkeretek éves felülvizsgálata, bankszámlák teljességének ellenőrzése)',
+        'Részvétel Lean Six Sigma projektekben',
+        'Heti cash flow előrejelzések készítése',
+        'A Loans & Guarantees eszköz adminisztrátora: hitelkeretek feltöltése és szerkesztése, az adatbázis karbantartása és tisztítása',
+        'A csapat támogatása különböző cash projektekben',
+      ],
+    },
+    skills: ['Project Management', 'Bank Guarantees'],
+  },
+  {
+    id: 'diageo-trainee',
+    company: 'Diageo',
+    color: 'green',
+    role: { en: 'Bank Operations Trainee', hu: 'Banki műveleti gyakornok' },
+    start: { en: 'Nov 2017', hu: '2017. nov.' },
+    end: { en: 'Apr 2018', hu: '2018. ápr.' },
+    location: { en: 'Budapest', hu: 'Budapest' },
+    bullets: {
+      en: [
+        'Supporting the Bank Operations Centre in various cash-related projects',
+        'Backup admin of the Loans & Guarantees tool',
+        'Supporting the yearly audit projects of the Bank Operations Centre (e.g. account dormancy check, bank account completeness)',
+      ],
+      hu: [
+        'A Bank Operations Centre támogatása különböző cash projektekben',
+        'A Loans & Guarantees eszköz helyettes adminisztrátora',
+        'A Bank Operations Centre éves auditprojektjeinek támogatása (pl. alvó számlák ellenőrzése, bankszámlák teljessége)',
+      ],
+    },
+    skills: [],
+  },
+];
+
+export const education = [
+  {
+    school: { en: 'Corvinus University of Budapest', hu: 'Budapesti Corvinus Egyetem' },
+    degree: {
+      en: "Master's degree, International Business and Economics",
+      hu: 'Mesterképzés, nemzetközi gazdaság és gazdálkodás',
+    },
+    note: {
+      en: 'Specialised in International Finance and Business Economy',
+      hu: 'Szakirány: nemzetközi pénzügyek és üzleti gazdaságtan',
+    },
+    years: '2016 – 2019',
+  },
+  {
+    school: { en: 'University of Public Service', hu: 'Nemzeti Közszolgálati Egyetem' },
+    degree: {
+      en: "Bachelor's degree, Public Administration",
+      hu: 'Alapképzés, közigazgatás',
+    },
+    note: null,
+    years: '2013 – 2016',
+  },
+];
+
+export const skills = [
+  'Business Analysis',
+  'Technical Writing',
+  'Project Management',
+  'Requirements Gathering',
+  'Backlog Management',
+  'BPMN & UML',
+  'Wireframing',
+  'Figma',
+  'Azure DevOps',
+  'Power BI',
+  'Excel',
+  'Process Simplification',
+];

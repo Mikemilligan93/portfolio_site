@@ -3,12 +3,12 @@ import Footer from './Footer';
 import BlogList from './BlogList';
 import { ui } from '../content/site';
 
-export default function BlogIndexView({ posts }) {
+export default function BlogIndexView({ posts, hasWork = false }) {
   const t = ui.en;
   return (
     <>
       <a className="skip" href="#main">{t.skip}</a>
-      <Nav lang="en" page="blog" />
+      <Nav lang="en" page="blog" hasWork={hasWork} />
       <main id="main" className="section section--blog">
         <div className="wrap wrap--narrow">
           <header className="section__head">

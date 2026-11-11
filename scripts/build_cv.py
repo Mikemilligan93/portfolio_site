@@ -100,7 +100,7 @@ def build(data, lang):
 
     contact = [site['location'][lang], site['linkedin'].replace('https://www.', ''),
                site['github'].replace('https://', '')]
-    if not site['email'].endswith('@example.com'):
+    if site['email'] and not site['email'].endswith('@example.com'):
         contact.insert(1, site['email'])
 
     story = [
@@ -109,7 +109,8 @@ def build(data, lang):
         Spacer(1, 3),
         Paragraph(esc('  ·  '.join(contact)), small),
         Spacer(1, 10),
-        Paragraph(esc(t['hero']['intro']), body),
+        # the first two intro paragraphs; the 'off the clock' line stays on the site
+        *[Paragraph(esc(p), ParagraphStyle('intro', parent=body, spaceAfter=5)) for p in t['hero']['intro'][:2]],
     ]
 
     story += section_title(t['cv']['experience'], 'yellow')

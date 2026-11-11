@@ -4,8 +4,9 @@
 export const site = {
   name: 'Bence Tóth',
   nameLocal: { en: 'Bence Tóth', hu: 'Tóth Bence' },
-  // TODO: replace with the address you want to publish.
-  email: 'your.email@example.com',
+  // Not published on the site. The contact form sends through Formspree
+  // (NEXT_PUBLIC_FORM_ENDPOINT); without it the form is hidden.
+  email: '',
   linkedin: 'https://www.linkedin.com/in/tothbenceistvan',
   linkedinLabel: 'in/tothbenceistvan',
   github: 'https://github.com/Mikemilligan93',
@@ -19,8 +20,8 @@ export const ui = {
   en: {
     metaTitle: 'Bence Tóth – Business Analyst & Tech Writer',
     metaDescription:
-      'Senior Business Analyst and tech writer. I turn business needs into specifications teams can build from. CV, contact and blog.',
-    nav: { about: 'About', cv: 'CV', blog: 'Blog', contact: 'Contact me' },
+      'Bence Tóth – Senior Business Analyst. The bridge between client and development team: requirements, options, decisions and specifications teams can build from.',
+    nav: { about: 'About', cv: 'CV', work: 'Case studies', blog: 'Blog', contact: 'Contact me' },
     themeToLight: 'Switch to light mode',
     themeToDark: 'Switch to dark mode',
     langSwitch: 'Magyar',
@@ -29,10 +30,14 @@ export const ui = {
     skip: 'Skip to content',
     hero: {
       hello: "Hi, I'm Bence.",
-      title: ['I turn business', 'needs into', 'buildable specs.'],
-      titleMark: 'buildable', // the word that gets the highlight
-      intro:
-        "Senior Business Analyst and tech writer at Mito, Budapest. I work in the gap between what a client asks for and what a team can ship: I dig out the real need, cut the noise, and write specs that designers, developers and testers can build from without a follow-up meeting. I've also run projects end to end, so I write for the people who have to live with the result.",
+      title: ['I build the', 'bridge between', 'client and team.'],
+      titleMark: 'bridge', // the word that gets the highlight
+      // one string per paragraph
+      intro: [
+        "Senior Business Analyst at Mito in Budapest. I sit between the client and the development team and make sure both sides mean the same thing. I find out what the client actually needs, lay out the options with their trade-offs, tell them which one I'd pick, and write it all down as a specification the client can sign and the team can build from.",
+        "Before software, I spent years in finance operations at Diageo and Citi, on the user's side of internal tools. That's where I learned to think in processes, and what a badly specified tool feels like from the inside.",
+        "Off the clock: video games, cars, and the occasional side project built with AI, mostly to find out what it can't do.",
+      ],
       ctaCv: 'See my CV',
       ctaContact: "Let's talk",
       badgeRole: 'Senior BA @ Mito',
@@ -42,7 +47,7 @@ export const ui = {
     cv: {
       kicker: 'The track record',
       title: 'CV',
-      lead: 'Finance operations first, then analysis, then software. Open any role for the details.',
+      lead: 'From finance operations to software delivery. Open any role for the details.',
       download: 'Download CV (PDF)',
       expand: 'Show details',
       collapse: 'Hide details',
@@ -51,10 +56,27 @@ export const ui = {
       education: 'Education',
       skills: 'Skills & tools',
     },
+    work: {
+      kicker: 'Selected work',
+      title: 'Case studies',
+      lead: 'Side projects where an AI wrote the code and I owned everything else: the brief, the decisions, the testing. The same job I do at work, compressed into days.',
+      read: 'Read the case study',
+      draft: 'Draft',
+      kickerDetail: 'Case study',
+      client: 'Client',
+      role: 'Role',
+      year: 'Year',
+      duration: 'Duration',
+      back: 'All case studies',
+      next: 'Next case study',
+      ctaTitle: 'Facing something similar?',
+      ctaText: 'I am happy to talk it through, no strings attached.',
+      ctaButton: 'Contact me',
+    },
     contact: {
       kicker: 'Say hello',
       title: 'Contact me',
-      lead: 'Got a project that needs untangling, a role worth discussing, or a spec nobody understands? Pick a channel or write to me here.',
+      lead: 'Want to work together, or have a project that needs someone between the client and the team? Write to me here or on LinkedIn.',
       name: 'Your name',
       email: 'Your e-mail',
       message: 'Message',
@@ -66,20 +88,25 @@ export const ui = {
     },
     blog: {
       title: 'Blog',
-      lead: 'Field notes on requirements, documentation and getting things delivered.',
+      lead: 'Notes on specifications, decisions and building with AI.',
       all: 'All',
       read: 'Read post',
       back: 'Back to all posts',
       empty: 'No posts with this tag yet.',
       englishOnly: '',
     },
-    footer: 'Built with Next.js, Markdown and strong opinions about documentation.',
+    approach: {
+      kicker: 'The short version',
+      title: 'How I work',
+      lead: 'Six habits I bring to every project.',
+    },
+    footer: "Built with Next.js, Markdown and an AI that didn't write the spec.",
   },
   hu: {
     metaTitle: 'Tóth Bence – üzleti elemző és tech writer',
     metaDescription:
-      'Senior üzleti elemző és tech writer. Üzleti igényekből olyan specifikációt írok, amelyből a csapat építeni tud. Önéletrajz, elérhetőség és blog.',
-    nav: { about: 'Rólam', cv: 'Önéletrajz', blog: 'Blog', contact: 'Írj nekem' },
+      'Tóth Bence – senior üzleti elemző. Híd az ügyfél és a fejlesztőcsapat között: igények, lehetőségek, döntések és megépíthető specifikációk.',
+    nav: { about: 'Rólam', cv: 'Önéletrajz', work: 'Esettanulmányok', blog: 'Blog', contact: 'Írj nekem' },
     themeToLight: 'Váltás világos módra',
     themeToDark: 'Váltás sötét módra',
     langSwitch: 'English',
@@ -88,10 +115,13 @@ export const ui = {
     skip: 'Ugrás a tartalomra',
     hero: {
       hello: 'Szia, Bence vagyok.',
-      title: ['Üzleti igényből', 'megépíthető', 'specifikáció.'],
-      titleMark: 'megépíthető',
-      intro:
-        'Senior üzleti elemző és tech writer vagyok a budapesti Mitónál. Ott dolgozom, ahol az ügyfél kérése és a csapat által leszállítható megoldás elválik egymástól: kiásom a valódi igényt, kiszűröm a zajt, és olyan specifikációt írok, amelyből a designerek, a fejlesztők és a tesztelők újabb egyeztetés nélkül tudnak dolgozni. Projekteket is vittem végig az elejétől a végéig, ezért azoknak írok, akiknek az eredménnyel együtt kell élniük.',
+      title: ['Áthidalom', 'az ügyfél és', 'a fejlesztők közti gapeket'],
+      titleMark: 'Áthidalom',
+      intro: [
+        'Senior üzleti elemző vagyok a Mitónál. Az ügyfél és a fejlesztőcsapat között dolgozom, és az a munkám, hogy a két oldal ugyanazt értse. Kiderítem, mire van valójában szüksége az ügyfélnek, ha kell egymás mellé teszem a lehetőségeket az előnyeikkel és hátrányaikkal, majd a döntést olyan specifikációba írom le, amely mindenkinek megfelel.',
+        'Mielőtt a szoftverek felé fordultam, éveket töltöttem pénzügyi területen a Diageónál és a Citinél, a belső rendszerek powerusereként. Ott tanultam meg folyamatokban gondolkodni, és ott tapasztaltam meg belülről, milyen az ügyféloldalon lenni egy fejlesztési projektben.',
+        'Munkán kívül: videojátékok, autók, és néha egy-egy AI-jal épített hobbiprojekt, főleg azért, hogy kiderüljön, mire nem vagyok képes.',
+      ],
       ctaCv: 'Önéletrajzom',
       ctaContact: 'Beszéljünk',
       badgeRole: 'Senior BA @ Mito',
@@ -99,9 +129,9 @@ export const ui = {
       photoAlt: 'Tóth Bence mikrofonnal a kezében',
     },
     cv: {
-      kicker: 'Az eddigi pálya',
+      kicker: 'Pályám',
       title: 'Önéletrajz',
-      lead: 'Először pénzügyi operáció, aztán elemzés, végül szoftver. A részletekért nyiss le egy pozíciót.',
+      lead: 'Pénzügytől a szoftverfejlesztésig. A részletekért nyiss le egy pozíciót.',
       download: 'Önéletrajz letöltése (PDF)',
       expand: 'Részletek megjelenítése',
       collapse: 'Részletek elrejtése',
@@ -110,10 +140,27 @@ export const ui = {
       education: 'Tanulmányok',
       skills: 'Készségek és eszközök',
     },
+    work: {
+      kicker: 'Válogatott munkák',
+      title: 'Esettanulmányok',
+      lead: 'Hobbiprojektek, ahol a kódot AI írta, minden mást én vittem: a briefet, a döntéseket, a tesztelést. Ugyanaz a munka, amit a cégnél végzek, csak napokba sűrítve. Az esettanulmányok angol nyelvűek.',
+      read: 'Esettanulmány (angolul)',
+      draft: 'Piszkozat',
+      kickerDetail: 'Esettanulmány',
+      client: 'Ügyfél',
+      role: 'Szerep',
+      year: 'Év',
+      duration: 'Időtartam',
+      back: 'Összes esettanulmány',
+      next: 'Következő esettanulmány',
+      ctaTitle: 'Hasonló helyzetben vagy?',
+      ctaText: 'Szívesen átbeszélem, kötelezettség nélkül.',
+      ctaButton: 'Írj nekem',
+    },
     contact: {
       kicker: 'Köszönj be',
       title: 'Írj nekem',
-      lead: 'Van egy projekted, amit ki kellene bogozni, egy pozíció, amiről érdemes beszélni, vagy egy specifikáció, amit senki sem ért? Válassz csatornát, vagy írj itt.',
+      lead: 'Dolgoznál velem, vagy van egy projekted, ahol kell valaki az ügyfél és a csapat közé? Írj itt vagy LinkedInen.',
       name: 'Neved',
       email: 'E-mail-címed',
       message: 'Üzenet',
@@ -125,14 +172,19 @@ export const ui = {
     },
     blog: {
       title: 'Blog',
-      lead: 'Terepjegyzetek követelményekről, dokumentációról és arról, hogyan lesz a tervből leszállított munka.',
+      lead: 'Jegyzetek specifikációkról, döntésekről és az AI buildekről.',
       all: 'Összes',
       read: 'Elolvasom',
       back: 'Vissza a bejegyzésekhez',
       empty: 'Ehhez a címkéhez még nincs bejegyzés.',
       englishOnly: 'A blog angol nyelvű.',
     },
-    footer: 'Next.js, Markdown és határozott vélemény a dokumentációról.',
+    approach: {
+      kicker: 'Röviden',
+      title: 'Így dolgozom',
+      lead: 'Hat szokás, amit minden projektbe magammal viszek.',
+    },
+    footer: 'Next.js-szel, Markdownnal és egy AI-jal készült, de a specifikációt nem az AI írta.',
   },
 };
 
@@ -148,10 +200,14 @@ export const jobs = [
     location: { en: 'Budapest · Hybrid', hu: 'Budapest · Hibrid' },
     bullets: {
       en: [
-        'Leading business analysis and functional specification work on client projects',
+        'Writing functional specifications from client requirement documents',
+        'Preparing scope of work documents for new projects',
+        'Mentoring and leading BA work in the team',
       ],
       hu: [
-        'Üzleti elemzési és funkcionális specifikációs munka vezetése ügyfélprojekteken',
+        'Funkcionális specifikációk írása ügyféligény-dokumentumokból',
+        'Scope of work dokumentumok készítése új projektekhez',
+        'A csapat BA-munkájának mentorálása és vezetése',
       ],
     },
     skills: ['Business Analysis', 'Technical Writing'],
@@ -218,7 +274,7 @@ export const jobs = [
     color: 'blue',
     role: {
       en: 'Financial Reporting Officer – Liquidity',
-      hu: 'Pénzügyi riporting munkatárs – likviditás',
+      hu: 'Financial Reporting Officer – Liquidity',
     },
     start: { en: 'Oct 2020', hu: '2020. okt.' },
     end: { en: 'Jun 2021', hu: '2021. jún.' },
@@ -243,7 +299,7 @@ export const jobs = [
     color: 'green',
     role: {
       en: 'Business Analyst – Data & Analytics',
-      hu: 'Üzleti elemző – Data & Analytics',
+      hu: 'Business Analyst – Data & Analytics',
     },
     start: { en: 'Sep 2019', hu: '2019. szept.' },
     end: { en: 'Oct 2020', hu: '2020. okt.' },
@@ -256,7 +312,7 @@ export const jobs = [
         'Process simplification (UiPath)',
       ],
       hu: [
-        'Rendszeres és eseti riportok készítése a Source-to-Pay (STP) csapatnak',
+        'Rendszeres és ad-hoc riportok készítése a Source-to-Pay (STP) csapatnak',
         'Az adattárház-fejlesztők támogatása BI-projektekben (Power BI)',
         'Megoldások tervezése a beérkező riportigényekre',
         'Folyamatok egyszerűsítése (UiPath)',
@@ -270,7 +326,7 @@ export const jobs = [
     color: 'green',
     role: {
       en: 'Business Analyst – L&G Tool Development (part-time internal project)',
-      hu: 'Üzleti elemző – L&G eszközfejlesztés (részmunkaidős belső projekt)',
+      hu: 'Business Analyst – L&G Tool Development (part-time internal project)',
     },
     start: { en: 'Jan 2020', hu: '2020. jan.' },
     end: { en: 'Apr 2020', hu: '2020. ápr.' },
@@ -297,7 +353,7 @@ export const jobs = [
     id: 'diageo-bank',
     company: 'Diageo',
     color: 'green',
-    role: { en: 'Bank Operations Analyst', hu: 'Banki műveleti elemző' },
+    role: { en: 'Bank Operations Analyst', hu: 'Bank Operations Analyst' },
     start: { en: 'Apr 2018', hu: '2018. ápr.' },
     end: { en: 'Sep 2019', hu: '2019. szept.' },
     location: { en: 'Budapest', hu: 'Budapest' },
@@ -311,8 +367,8 @@ export const jobs = [
         'Supporting the team in various cash projects',
       ],
       hu: [
-        'A Diageo külső hitelkereteinek (garanciák, akkreditívek) kezelése a partnerbankoknál',
-        'Éves auditprojektek felelőse (külső hitelkeretek éves felülvizsgálata, bankszámlák teljességének ellenőrzése)',
+        'A Diageo külső banki garanciáinak kezelése',
+        'Éves auditprojektek felelőse (külső hitelkeretek éves felülvizsgálata, bankszámlák ellenőrzése)',
         'Részvétel Lean Six Sigma projektekben',
         'Heti cash flow előrejelzések készítése',
         'A Loans & Guarantees eszköz adminisztrátora: hitelkeretek feltöltése és szerkesztése, az adatbázis karbantartása és tisztítása',
@@ -325,7 +381,7 @@ export const jobs = [
     id: 'diageo-trainee',
     company: 'Diageo',
     color: 'green',
-    role: { en: 'Bank Operations Trainee', hu: 'Banki műveleti gyakornok' },
+    role: { en: 'Bank Operations Trainee', hu: 'Bank Operations Trainee' },
     start: { en: 'Nov 2017', hu: '2017. nov.' },
     end: { en: 'Apr 2018', hu: '2018. ápr.' },
     location: { en: 'Budapest', hu: 'Budapest' },
@@ -338,7 +394,7 @@ export const jobs = [
       hu: [
         'A Bank Operations Centre támogatása különböző cash projektekben',
         'A Loans & Guarantees eszköz helyettes adminisztrátora',
-        'A Bank Operations Centre éves auditprojektjeinek támogatása (pl. alvó számlák ellenőrzése, bankszámlák teljessége)',
+        'A Bank Operations Centre éves auditprojektjeinek támogatása (pl. pending számlák ellenőrzése, bankszámlák teljessége)',
       ],
     },
     skills: [],
@@ -354,7 +410,7 @@ export const education = [
     },
     note: {
       en: 'Specialised in International Finance and Business Economy',
-      hu: 'Szakirány: nemzetközi pénzügyek és üzleti gazdaságtan',
+      hu: 'Szakirány: nemzetközi pénzügyek',
     },
     years: '2016 – 2019',
   },
@@ -369,8 +425,67 @@ export const education = [
   },
 ];
 
+// "How I work": one card per habit, same order in both languages.
+export const principles = {
+  en: [
+    {
+      title: 'Read everything, then talk to people.',
+      text: 'I read the whole requirement document, turn it into a list of open questions, then take those questions to the people who can answer them.',
+    },
+    {
+      title: 'Options, trade-offs, a recommendation.',
+      text: "Clients get the options side by side, what each one costs, and which one I'd choose and why. The decision stays theirs.",
+    },
+    {
+      title: 'Show the consequence.',
+      text: "When I think a request is wrong, I walk through what it leads to and let the client draw the conclusion.",
+    },
+    {
+      title: 'Every decision has an owner.',
+      text: 'Vague ownership is how projects stall. Who decides, who answers and who builds goes on paper early.',
+    },
+    {
+      title: 'No hidden problems.',
+      text: "A known problem gets raised the day I know about it. And I don't write a spec section I can't explain.",
+    },
+    {
+      title: 'AI drafts, people decide.',
+      text: "I use AI to analyse input material, draft documents and build my own tools. The client relationship, and anyone else's voice, stay with people. Code got cheap; a clear description didn't.",
+    },
+  ],
+  hu: [
+    {
+      title: 'Előbb olvasok, aztán kérdezek.',
+      text: 'Végigolvasom a teljes követelménydokumentumot, nyitott kérdések listájává alakítom, aztán ezekkel a kérdésekkel megyek azokhoz, akik meg tudják válaszolni őket.',
+    },
+    {
+      title: 'Lehetőségek, kompromisszumok, javaslat.',
+      text: 'Az ügyfél egymás mellett látja a lehetőségeket és hogy én melyiket választanám és miért. A döntés az övé marad.',
+    },
+    {
+      title: 'Megmutatom a következményt.',
+      text: 'Ha szerintem egy kérés rossz, végigmegyek azon, mihez vezet, és hagyom, hogy az ügyfél vonja le a következtetést.',
+    },
+    {
+      title: 'Minden döntésnek gazdája van.',
+      text: 'Sokszor a tisztázatlan felelősség miatt akadnak el a projektek. Hogy ki dönt, ki válaszol és ki épít, az már korán papírra kerül.',
+    },
+    {
+      title: 'Nincsenek eltitkolt problémák.',
+      text: 'Egy ismert problémát már akkor jelzek, amikor tudomást szerzek róla. Nem írok olyan specifikációt, amelyet nem tudok elmagyarázni.',
+    },
+    {
+      title: 'Az AI vázlatot ír, ember dönt.',
+      text: 'AI-jal elemzem a bemeneti anyagokat, dokumentumvázlatokat készítek és saját eszközöket építek. Az ügyfélkapcsolat és mások hangja emberek kezében marad. A kód olcsó lett, a világos leírás nem.',
+    },
+  ],
+};
+
 export const skills = [
   'Business Analysis',
+  'Functional Specifications',
+  'Scope of Work',
+  'Workshop Facilitation',
   'Technical Writing',
   'Project Management',
   'Requirements Gathering',

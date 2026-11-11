@@ -2,7 +2,8 @@ import Nav from './Nav';
 import Footer from './Footer';
 import CvList from './CvList';
 import ContactForm from './ContactForm';
-import { site, ui, jobs, education, skills } from '../content/site';
+import CaseStudyCards from './CaseStudyCards';
+import { site, ui, jobs, education, skills, principles } from '../content/site';
 import { withBase } from '../lib/paths';
 
 function ArrowIcon() {
@@ -21,7 +22,10 @@ function DownloadIcon() {
   );
 }
 
-export default function HomeView({ lang = 'en' }) {
+const FORM_ENDPOINT = process.env.NEXT_PUBLIC_FORM_ENDPOINT || '';
+const PRINCIPLE_COLORS = ['yellow', 'pink', 'green', 'purple', 'blue', 'orange'];
+
+export default function HomeView({ lang = 'en', caseStudies = [], hasBlog = true }) {
   const t = ui[lang];
   const localizedJobs = jobs.map((job) => ({
     id: job.id,
@@ -33,12 +37,14 @@ export default function HomeView({ lang = 'en' }) {
     bullets: job.bullets[lang],
     skills: job.skills,
   }));
-  const isPlaceholderEmail = site.email.endsWith('@example.com');
+  const isPlaceholderEmail = !site.email || site.email.endsWith('@example.com');
+  // the form needs somewhere to send to: a form service or a public address
+  const showForm = Boolean(FORM_ENDPOINT) || !isPlaceholderEmail;
 
   return (
     <>
       <a className="skip" href="#main">{t.skip}</a>
-      <Nav lang={lang} page="home" />
+      <Nav lang={lang} page="home" hasWork={caseStudies.length > 0} hasBlog={hasBlog} />
       <main id="main">
         {/* ---------- Home / About ---------- */}
         <section id="about" className="hero">
@@ -64,7 +70,9 @@ export default function HomeView({ lang = 'en' }) {
                   );
                 })}
               </h1>
-              <p className="hero__intro">{t.hero.intro}</p>
+              {t.hero.intro.map((paragraph) => (
+                <p key={paragraph.slice(0, 24)} className="hero__intro">{paragraph}</p>
+              ))}
               <div className="hero__actions">
                 <a className="btn btn--yellow" href="#cv">{t.hero.ctaCv}</a>
                 <a className="btn btn--ghost" href="#contact">{t.hero.ctaContact}</a>
@@ -89,6 +97,30 @@ export default function HomeView({ lang = 'en' }) {
                 <span className="portrait__badge portrait__badge--bottom bg-yellow">{t.hero.badgeSince}</span>
               </div>
             </div>
+          </div>
+        </section>
+
+        {/* ---------- How I work ---------- */}
+        <section id="approach" className="section section--approach">
+          <div className="wrap">
+            <header className="section__head">
+              <div>
+                <p className="kicker">{t.approach.kicker}</p>
+                <h2 className="section__title">{t.approach.title}</h2>
+                <p className="section__lead">{t.approach.lead}</p>
+              </div>
+            </header>
+            <ol className="principles">
+              {principles[lang].map((p, i) => (
+                <li key={p.title} className="principle">
+                  <span className={`principle__num bg-${PRINCIPLE_COLORS[i % PRINCIPLE_COLORS.length]}`} aria-hidden="true">
+                    {String(i + 1).padStart(2, '0')}
+                  </span>
+                  <h3 className="principle__title">{p.title}</h3>
+                  <p>{p.text}</p>
+                </li>
+              ))}
+            </ol>
           </div>
         </section>
 
@@ -145,6 +177,22 @@ export default function HomeView({ lang = 'en' }) {
           </div>
         </section>
 
+        {/* ---------- Case studies (hidden until there is at least one) ---------- */}
+        {caseStudies.length > 0 && (
+          <section id="case-studies" className="section section--work">
+            <div className="wrap">
+              <header className="section__head">
+                <div>
+                  <p className="kicker">{t.work.kicker}</p>
+                  <h2 className="section__title">{t.work.title}</h2>
+                  <p className="section__lead">{t.work.lead}</p>
+                </div>
+              </header>
+              <CaseStudyCards items={caseStudies} labels={t.work} />
+            </div>
+          </section>
+        )}
+
         {/* ---------- Contact ---------- */}
         <section id="contact" className="section section--contact">
           <div className="wrap">
@@ -181,9 +229,11 @@ export default function HomeView({ lang = 'en' }) {
                   </li>
                 )}
               </ul>
-              <div className="card card--form">
-                <ContactForm labels={t.contact} email={site.email} />
-              </div>
+              {showForm && (
+                <div className="card card--form">
+                  <ContactForm labels={t.contact} email={site.email} />
+                </div>
+              )}
             </div>
           </div>
         </section>

@@ -3,12 +3,12 @@ import Nav from './Nav';
 import Footer from './Footer';
 import { ui } from '../content/site';
 
-export default function PostView({ post }) {
+export default function PostView({ post, hasWork = false }) {
   const t = ui.en;
   return (
     <>
       <a className="skip" href="#main">{t.skip}</a>
-      <Nav lang="en" page="blog" />
+      <Nav lang="en" page="blog" hasWork={hasWork} />
       <main id="main" className="section section--blog">
         <article className="wrap wrap--narrow">
           <p>

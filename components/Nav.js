@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { site, ui } from '../content/site';
 import { withBase, homePath } from '../lib/paths';
 
-const SECTIONS = ['about', 'cv', 'contact'];
+const SECTIONS = ['about', 'cv', 'case-studies', 'contact'];
 
 function SunIcon() {
   return (
@@ -24,10 +24,12 @@ function MoonIcon() {
   );
 }
 
-// page: 'home' (one-pager with scroll spy) or 'blog'
-export default function Nav({ lang = 'en', page = 'home' }) {
+// page: 'home' (one-pager with scroll spy), 'blog' or 'work' (a case study page)
+export default function Nav({ lang = 'en', page = 'home', hasWork = false, hasBlog = true }) {
   const t = ui[lang];
-  const [active, setActive] = useState(page === 'blog' ? 'blog' : 'about');
+  const [active, setActive] = useState(
+    page === 'blog' ? 'blog' : page === 'work' ? 'case-studies' : 'about'
+  );
   const [theme, setTheme] = useState('light');
   const [open, setOpen] = useState(false);
 
@@ -76,7 +78,7 @@ export default function Nav({ lang = 'en', page = 'home' }) {
   const sectionHref = (id) =>
     page === 'home' ? `#${id}` : withBase(`${homePath(lang)}#${id}`);
   const close = () => setOpen(false);
-  const current = (id) => (active === id ? (id === 'blog' ? 'page' : 'true') : undefined);
+  const current = (id) => (active === id ? (page === 'home' ? 'true' : 'page') : undefined);
 
   return (
     <header className="nav">
@@ -104,9 +106,21 @@ export default function Nav({ lang = 'en', page = 'home' }) {
           <a className="nav__link" href={sectionHref('cv')} aria-current={current('cv')} onClick={close}>
             {t.nav.cv}
           </a>
-          <Link className="nav__link" href="/blog/" aria-current={current('blog')} onClick={close}>
-            {t.nav.blog}
-          </Link>
+          {hasWork && (
+            <a
+              className="nav__link"
+              href={sectionHref('case-studies')}
+              aria-current={current('case-studies')}
+              onClick={close}
+            >
+              {t.nav.work}
+            </a>
+          )}
+          {hasBlog && (
+            <Link className="nav__link" href="/blog/" aria-current={current('blog')} onClick={close}>
+              {t.nav.blog}
+            </Link>
+          )}
           <a
             className="nav__link nav__link--cta"
             href={sectionHref('contact')}

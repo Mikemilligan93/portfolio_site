@@ -456,9 +456,10 @@ img {
 }
 
 .hero__intro {
-  max-width: 56ch;
+  --intro: 1.125rem;
+  max-width: 64ch;
   color: var(--muted);
-  font-size: 1.125rem;
+  font-size: var(--intro);
 }
 
 .hero__intro + .hero__intro {
@@ -468,7 +469,7 @@ img {
 /* the 'off the clock' line */
 .hero__intro:last-of-type:not(:first-of-type) {
   font-family: var(--font-mono), ui-monospace, monospace;
-  font-size: 0.92rem;
+  font-size: calc(var(--intro, 1.125rem) * 0.86);
 }
 
 .hero__actions {
@@ -640,6 +641,171 @@ img {
 .section__lead {
   max-width: 56ch;
   color: var(--muted);
+}
+
+/* ---------- hero: the whole first section fits one screen ----------
+   Sizes follow the screen height (vh) as well as the width, so on a short
+   laptop screen everything shrinks a little instead of falling below the fold. */
+
+.hero {
+  display: flex;
+  align-items: center;
+  min-height: calc(100svh - var(--nav-h));
+  padding: clamp(16px, 3.5vh, 48px) 0;
+}
+
+.hero__grid {
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+  grid-template-areas:
+    'head visual'
+    'body visual';
+  column-gap: clamp(32px, 5vw, 72px);
+  row-gap: 0;
+  align-items: center;
+}
+
+.hero__head {
+  grid-area: head;
+  align-self: end;
+}
+
+.hero__body {
+  grid-area: body;
+  align-self: start;
+}
+
+.hero__visual {
+  grid-area: visual;
+  padding: 0 36px 36px 0;
+}
+
+.hero__title {
+  margin: clamp(6px, 1.2vh, 14px) 0 clamp(12px, 2.4vh, 24px);
+  font-size: clamp(1.9rem, min(5vw, 6.6vh), 4.4rem);
+}
+
+.hero__intro {
+  --intro: clamp(0.9rem, 1.75vh, 1.1rem);
+  font-size: var(--intro);
+  line-height: 1.55;
+}
+
+.hero__intro + .hero__intro {
+  margin-top: 0.7em;
+}
+
+.hero__actions {
+  margin-top: clamp(14px, 3vh, 32px);
+}
+
+.portrait {
+  width: min(100%, 380px, 52vh);
+}
+
+@media (max-width: 900px) {
+  /* phones and small tablets: photo beside the headline, text underneath */
+  .hero {
+    align-items: flex-start;
+  }
+
+  .hero__grid {
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas:
+      'head visual'
+      'body body';
+    column-gap: 14px;
+  }
+
+  .hero__head {
+    align-self: center;
+  }
+
+  .hero__visual {
+    order: 0;
+    padding: 0 18px 18px 0;
+  }
+
+  .portrait {
+    width: clamp(104px, min(30vw, 22vh), 240px);
+  }
+
+  .portrait__frame,
+  .portrait__layer {
+    border-width: 2px;
+    border-radius: 16px;
+  }
+
+  .portrait__frame img {
+    border-radius: 0 0 14px 14px;
+  }
+
+  .portrait__layer--1 { translate: 6px 6px; }
+  .portrait__layer--2 { translate: 12px 12px; }
+  .portrait__layer--3 { translate: 18px 18px; }
+
+  .hero__title {
+    font-size: clamp(1.45rem, min(6.6vw, 4.4vh), 2.6rem);
+  }
+
+  .hero__title .hero__mark {
+    padding: 0 8px 2px;
+    border-radius: 8px;
+  }
+
+  .hero__intro {
+    --intro: clamp(0.8rem, 1.85vh, 1rem);
+    font-size: var(--intro);
+    line-height: 1.5;
+  }
+
+  .hero__actions {
+    gap: 12px;
+  }
+
+  .hero__actions .btn {
+    padding: 10px 18px;
+  }
+}
+
+@media (max-width: 600px) {
+  /* the badges would cover the small photo */
+  .portrait__badge {
+    display: none;
+  }
+}
+
+@media (max-height: 760px) {
+  .hero {
+    padding: 10px 0;
+  }
+
+  .hero__title {
+    font-size: clamp(1.45rem, min(5vw, 6vh), 4.4rem);
+  }
+
+  .hero__intro {
+    --intro: clamp(0.85rem, 1.8vh, 1rem);
+    font-size: var(--intro);
+    line-height: 1.45;
+  }
+
+  .hero__actions {
+    margin-top: 12px;
+  }
+
+  .hero__actions .btn {
+    padding: 9px 16px;
+  }
+}
+
+@media (max-width: 900px) and (max-height: 760px) {
+  .hero__intro {
+    --intro: clamp(0.78rem, 1.75vh, 0.95rem);
+  }
+
+  .hero__title {
+    font-size: clamp(1.3rem, min(6.2vw, 4.2vh), 2.6rem);
+  }
 }
 
 /* ---------- How I work ---------- */

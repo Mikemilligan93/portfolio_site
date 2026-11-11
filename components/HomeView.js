@@ -49,7 +49,7 @@ export default function HomeView({ lang = 'en', caseStudies = [], hasBlog = true
         {/* ---------- Home / About ---------- */}
         <section id="about" className="hero">
           <div className="wrap hero__grid">
-            <div className="hero__text">
+            <div className="hero__head">
               <p className="kicker">{t.hero.hello}</p>
               <h1 className="hero__title">
                 {t.hero.title.map((line) => {
@@ -70,6 +70,9 @@ export default function HomeView({ lang = 'en', caseStudies = [], hasBlog = true
                   );
                 })}
               </h1>
+            </div>
+
+            <div className="hero__body">
               {t.hero.intro.map((paragraph) => (
                 <p key={paragraph.slice(0, 24)} className="hero__intro">{paragraph}</p>
               ))}
